@@ -1,0 +1,18 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/10 - snowy end.ogg-32aaf4d3584e2f52e0e13f047086acfb.oggstr"
+
+[deps]
+
+source_file="res://SFX/10 - snowy end.ogg"
+source_md5="bfd8ca95544cde15e21c38e02b1c6816"
+
+dest_files=[ "res://.import/10 - snowy end.ogg-32aaf4d3584e2f52e0e13f047086acfb.oggstr" ]
+dest_md5="03ebb0525eaa3a11be7ebb28be42459a"
+
+[params]
+
+loop=true
+loop_offset=0

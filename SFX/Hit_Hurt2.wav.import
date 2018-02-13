@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Hit_Hurt2.wav-157be1db3a7682f9035572760e8308eb.sample"
+
+[deps]
+
+source_file="res://SFX/Hit_Hurt2.wav"
+source_md5="7777c31949e941a60f34ed92e9876552"
+
+dest_files=[ "res://.import/Hit_Hurt2.wav-157be1db3a7682f9035572760e8308eb.sample" ]
+dest_md5="82d7352565fc143121eb7bb5ced25701"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

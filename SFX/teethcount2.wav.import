@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/teethcount2.wav-a65bec4070fc7fe2063620dd7ff8b63e.sample"
+
+[deps]
+
+source_file="res://SFX/teethcount2.wav"
+source_md5="b6e8a05656744eff2e243bc87d0bab2e"
+
+dest_files=[ "res://.import/teethcount2.wav-a65bec4070fc7fe2063620dd7ff8b63e.sample" ]
+dest_md5="922deef402247365d16d521c5b8ab50d"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

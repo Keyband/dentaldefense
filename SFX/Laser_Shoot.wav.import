@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Laser_Shoot.wav-db41fc92ba564953fd3dbc50fd9d2e57.sample"
+
+[deps]
+
+source_file="res://SFX/Laser_Shoot.wav"
+source_md5="a341e08dbd7074fc4634c35b3df2faed"
+
+dest_files=[ "res://.import/Laser_Shoot.wav-db41fc92ba564953fd3dbc50fd9d2e57.sample" ]
+dest_md5="24ac652678a27370dd8ad70277a2d947"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
