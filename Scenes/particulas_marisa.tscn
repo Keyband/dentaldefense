@@ -1,0 +1,92 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Textures/white.png" type="Texture" id=1]
+
+[sub_resource type="Gradient" id=1]
+
+offsets = PoolRealArray( 0, 0.426035, 1 )
+colors = PoolColorArray( 0.195313, 1, 0, 1, 0, 1, 0.835938, 1, 1, 0.867188, 0, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+
+flags = 4
+gradient = SubResource( 1 )
+width = 2048
+
+[sub_resource type="Curve" id=3]
+
+min_value = -1.0
+max_value = 1.0
+bake_resolution = 100
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.0846108, 0.0859375 ), 0.0, 0.0, 0, 0, Vector2( 0.168394, -0.859375 ), 0.0, 0.0, 0, 0, Vector2( 0.239831, 0.708984 ), 0.0, 0.0, 0, 0, Vector2( 0.278635, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.310385, -0.773438 ), 0.0, 0.0, 0, 0, Vector2( 0.34919, 0.558594 ), 0.0, 0.0, 0, 0, Vector2( 0.37212, -0.730469 ), 0.0, 0.0, 0, 0, Vector2( 0.406515, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.47707, -0.558594 ), 0.0, 0.0, 0, 0, Vector2( 0.513229, 0.666016 ), 0.0, 0.0, 0, 0, Vector2( 0.569673, 0.859375 ), 0.0, 0.0, 0, 0, Vector2( 0.616415, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.653456, 0.708984 ), 0.0, 0.0, 0, 0, Vector2( 0.696671, 0.257813 ), 0.0, 0.0, 0, 0, Vector2( 0.77428, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.819259, 0.708984 ), 0.0, 0.0, 0, 0, Vector2( 0.867765, -0.601563 ), 0.0, 0.0, 0, 0, Vector2( 0.896869, -0.859375 ), 0.0, 0.0, 0, 0, Vector2( 0.953312, 0.150391 ), 0.0, 0.0, 0, 0, Vector2( 0.980652, 0.0429688 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.150391 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+
+flags = 4
+width = 2048
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+
+render_priority = 0
+trail_divisor = 1
+emission_shape = 1
+emission_sphere_radius = 1.0
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 180.0
+flatness = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 200.0
+initial_velocity_random = 0.6
+angular_velocity = 360.0
+angular_velocity_random = 1.0
+orbit_velocity = 1.2
+orbit_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 5.0
+radial_accel_random = 1.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 50.0
+damping_random = 0.5
+angle = 0.0
+angle_random = 0.0
+scale = 8.0
+scale_random = 1.0
+color_ramp = SubResource( 2 )
+hue_variation = 1.0
+hue_variation_random = 1.0
+hue_variation_curve = SubResource( 4 )
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Angle", "Color", "Initial Velocity", "Scale" ]
+
+[node name="Particles2D" type="Particles2D"]
+
+emitting = false
+amount = 50
+lifetime = 0.85
+one_shot = true
+preprocess = 0.0
+speed_scale = 1.0
+explosiveness = 1.0
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = true
+draw_order = 0
+process_material = SubResource( 5 )
+texture = ExtResource( 1 )
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time" ]
+
+

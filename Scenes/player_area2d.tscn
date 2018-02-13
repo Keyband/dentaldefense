@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/player_area2d.gd" type="Script" id=1]
+[ext_resource path="res://Textures/player.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 13, 27 )
+
+[node name="player" type="Area2D"]
+
+input_pickable = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Sprite" type="Sprite" parent="." index="0"]
+
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Offset", "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+
+shape = SubResource( 1 )
+
+[node name="timer_para_poder_atacar_de_novo" type="Timer" parent="." index="2"]
+
+process_mode = 1
+wait_time = 0.28
+one_shot = true
+autostart = false
+
+[node name="topo_cima" type="Position2D" parent="." index="3"]
+
+position = Vector2( 0, -26 )
+
+[node name="topo_baixo" type="Position2D" parent="." index="4"]
+
+position = Vector2( 0, 26 )
+
+[connection signal="body_entered" from="." to="." method="_on_player_body_entered"]
+
+[connection signal="timeout" from="timer_para_poder_atacar_de_novo" to="." method="_on_timer_para_poder_atacar_de_novo_timeout"]
+
+

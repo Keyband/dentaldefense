@@ -1,0 +1,50 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends Node2D
+#So um debug pra puxar o nome do jogador.
+
+func _ready():
+	#Essa primeira variavel eh o caminho ate os documentos do jogador.
+	var documentos_path = str(OS.get_system_dir(2))
+	#Essa variavel aqui embaixo eh o caminho ate a pasta pessoal do jogador (essa parte tem o nome dele)
+	var pasta_com_o_nome = str(OS.get_system_dir(2)).get_base_dir()
+	#Essa variavel tem a o caminho ate a pasta em que esta a pasta pessoal do jogador, usualmente e um c:/user ou algo assim
+	var pasta_em_que_a_pasta_de_interesse_esta = str(OS.get_system_dir(2)).get_base_dir().get_base_dir()
+	
+	#Como temos a pasta com o nome do jogador e a pasta em que essa pasta esta, fazemos o seguinte:
+	#Pegamos o caminho para a pasta com o nome do jogador;
+	#Usamos substr() para cortar o comeco desse caminho arbitrariamente;
+	#Para escolher o comeco adequado, usamos do tamanho da string que tem o caminho em que a pasta que tem o nome do jogador esta, ou seja, pasta_em_que_a_pasta_de_interesse_esta.length();
+	#Ainda por cima, somamos 1 nesse tamanho, para remover o barra do nome da pasta.
+	#Em seguida, precisamos do tamanho do nome;
+	#Para isso, podemos usar por exemplo o tamanho da pasta dos documentos, que esta contida na pasta que tem o nome do jogador.
+	
+	#Entao, o nome do jogador sera:
+	var nome_do_jogador = str( pasta_com_o_nome.substr(pasta_em_que_a_pasta_de_interesse_esta.length() + 1, documentos_path.length()))
+	#Mas esse nome pode ter um monte de espacos em branco no final. Resolvemos isso com:
+	nome_do_jogador = nome_do_jogador.strip_edges(true, true)
+	
+	#Entao:
+	print(nome_do_jogador + ', ou em uma so linha de codigo:')
+	print(str(OS.get_system_dir(2)).get_base_dir().substr(str(OS.get_system_dir(2)).get_base_dir().get_base_dir().length() + 1, str(OS.get_system_dir(2).length())))
+	
+	#Aqui embaixo mostro como o strip_edges funciona.
+	print('        teste         ')
+	print('        teste         '.strip_edges(true, true))
+#	print(OS.get_user_data_dir() )
+#	print(str())
+	pass
+
+#func _process(delta):
+#	# Called every frame. Delta is time since last frame.
+#	# Update game logic here.
+#	pass
+"
+
+[node name="Node2D" type="Node2D"]
+
+script = SubResource( 1 )
+
+

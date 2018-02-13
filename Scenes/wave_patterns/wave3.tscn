@@ -1,0 +1,69 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/wave_type3.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/enemy3.tscn" type="PackedScene" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 2, 10 )
+
+[node name="wave" type="Node2D"]
+
+script = ExtResource( 1 )
+
+[node name="enemy4" parent="." index="0" instance=ExtResource( 2 )]
+
+[node name="enemy5" parent="." index="1" instance=ExtResource( 2 )]
+
+position = Vector2( -80, 0 )
+
+[node name="enemy6" parent="." index="2" instance=ExtResource( 2 )]
+
+position = Vector2( 80, 0 )
+
+[node name="checker" type="Area2D" parent="." index="3"]
+
+editor/display_folded = true
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Transform" ]
+
+[node name="cr" type="CollisionShape2D" parent="checker" index="0"]
+
+position = Vector2( 100, 0 )
+shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="cl" type="CollisionShape2D" parent="checker" index="1"]
+
+position = Vector2( -100, 0 )
+shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="timer_para_parar" type="Timer" parent="." index="4"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[node name="timer_para_cair_com_tudo" type="Timer" parent="." index="5"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[connection signal="body_entered" from="checker" to="." method="_on_checker_body_entered"]
+
+[connection signal="timeout" from="timer_para_parar" to="." method="_on_timer_para_parar_timeout"]
+
+[connection signal="timeout" from="timer_para_cair_com_tudo" to="." method="_on_timer_para_cair_com_tudo_timeout"]
+
+

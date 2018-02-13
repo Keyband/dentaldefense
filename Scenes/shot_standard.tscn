@@ -1,0 +1,60 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=5]
+
+script/source = "extends Node2D
+
+###Variaveis
+var tiro_preload = preload(\"res://Scenes/tiro_standard.tscn\")
+var tiro_witch_preload = preload(\"res://Scenes/tiro_witch_standard.tscn\")
+var direcao = Vector2(0, -1)
+
+func _ready():
+	var nivel_do_upgrade_dos_tiros = global.nivel_dos_upgrades['moreshots'] 
+	if nivel_do_upgrade_dos_tiros == 0:
+		_single_shot()
+	elif nivel_do_upgrade_dos_tiros == 1:
+		_double_shot()
+	elif nivel_do_upgrade_dos_tiros == 2:
+		_triple_shot()
+	pass
+
+func _single_shot():
+	var tiro = _escolher_o_tiro()
+	tiro.global_position = self.global_position
+	tiro.direcao = self.direcao
+	get_tree().get_current_scene().add_child(tiro)
+	self.queue_free()
+
+func _double_shot():
+	var angulos = [- deg2rad(30), deg2rad(30)]
+	for angulo in angulos:
+		var tiro = _escolher_o_tiro()
+		tiro.global_position = self.global_position
+		tiro.direcao = self.direcao.rotated(angulo)
+		tiro.rotate(angulo)
+		get_tree().get_current_scene().add_child(tiro)
+	self.queue_free()
+
+func _triple_shot():
+	var angulos = [- deg2rad(30), 0, deg2rad(30)]
+	for angulo in angulos:
+		var tiro = _escolher_o_tiro()
+		tiro.global_position = self.global_position
+		tiro.direcao = self.direcao.rotated(angulo)
+		tiro.rotate(angulo)
+		get_tree().get_current_scene().add_child(tiro)
+	self.queue_free()
+
+func _escolher_o_tiro():
+	if global.nivel_dos_upgrades['witch'] == 0:
+		return tiro_preload.instance()
+	else:
+		return tiro_witch_preload.instance()
+"
+
+[node name="shot" type="Node2D"]
+
+script = SubResource( 5 )
+
+

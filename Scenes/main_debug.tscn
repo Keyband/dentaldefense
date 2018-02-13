@@ -1,0 +1,159 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scripts/world_manager.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/spawnerl.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/spawnerr.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/player_area2d.tscn" type="PackedScene" id=4]
+
+[sub_resource type="GDScript" id=3]
+
+script/source = "extends Label
+
+# class member variables go here, for example:
+# var a = 2
+# var b = \"textvar\"
+
+func _ready():
+	set_process(true)
+	pass
+
+func _process(delta):
+	set_text(str(global.pontos))
+	# Called every frame. Delta is time since last frame.
+	# Update game logic here.
+	pass
+"
+
+[sub_resource type="GDScript" id=2]
+
+script/source = "extends Node2D
+
+#Variaveis
+var indice_do_spawner_da_vez = 0
+onready var spawnerl = get_node('spawnerl')
+onready var spawnerr = get_node('spawnerr')
+
+func _ready():
+	set_process(true)
+	pass
+
+func _process(delta):
+#	if global.spawnando:
+		
+	# Called every frame. Delta is time since last frame.
+	# Update game logic here.
+	pass
+
+
+func _on_timer_para_tocar_o_barco_timeout():
+	randomize()
+	global.numero_de_waves_faltando -=1
+	if global.numero_de_waves_faltando >= 0:
+		if indice_do_spawner_da_vez == 0:
+			indice_do_spawner_da_vez = 1
+			spawnerl._spawn(rand_range(0,2))
+		elif indice_do_spawner_da_vez == 1:
+			indice_do_spawner_da_vez = 0
+			spawnerr._spawn(rand_range(0,2))
+	else:
+		if get_tree().get_nodes_in_group('enemy').size() == 0:
+			get_parent().the_wave_is_over_now_give_me_my_points()
+	pass # replace with function body
+"
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 312 )
+
+[node name="main_debug" type="WorldEnvironment"]
+
+environment = null
+script = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="." index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 40.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script = SubResource( 3 )
+
+[node name="spawners" type="Node2D" parent="." index="1"]
+
+script = SubResource( 2 )
+
+[node name="spawnerl" type="Position2D" parent="spawners" index="0"]
+
+script = ExtResource( 2 )
+
+[node name="spawnerr" type="Position2D" parent="spawners" index="1"]
+
+position = Vector2( 800, 0 )
+script = ExtResource( 3 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="timer_para_tocar_o_barco" type="Timer" parent="spawners" index="2"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[node name="boundaries" type="Node2D" parent="." index="2"]
+
+[node name="boundaryl" type="StaticBody2D" parent="boundaries" index="0" groups=[
+"boundary",
+"boundaryl",
+]]
+
+position = Vector2( -32, 300 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="boundaries/boundaryl" index="0"]
+
+shape = SubResource( 1 )
+
+[node name="boundaryr" type="StaticBody2D" parent="boundaries" index="1" groups=[
+"boundary",
+"boundaryr",
+]]
+
+position = Vector2( 832, 300 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="boundaries/boundaryr" index="0"]
+
+shape = SubResource( 1 )
+
+[node name="player" parent="." index="3" instance=ExtResource( 4 )]
+
+position = Vector2( 400, 350 )
+
+[connection signal="timeout" from="spawners/timer_para_tocar_o_barco" to="spawners" method="_on_timer_para_tocar_o_barco_timeout"]
+
+

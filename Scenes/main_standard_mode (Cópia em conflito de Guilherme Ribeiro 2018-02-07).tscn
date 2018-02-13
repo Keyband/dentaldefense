@@ -1,0 +1,571 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://Scripts/world_manager_standard.gd" type="Script" id=1]
+[ext_resource path="res://Resources/fonte_do_presstart.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Scripts/spawnerl.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/spawnerr.gd" type="Script" id=4]
+[ext_resource path="res://Scenes/player_area2d_standard_mode.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Textures/bg.png" type="Texture" id=6]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends \"res://Scripts/camera_melhor.gd\"
+
+# class member variables go here, for example:
+# var a = 2
+# var b = \"textvar\"
+
+func _ready():
+	# Called every time the node is added to the scene.
+	# Initialization here
+	pass
+
+#func _process(delta):
+#	# Called every frame. Delta is time since last frame.
+#	# Update game logic here.
+#	pass
+
+func _um_dente_foi_atingido():
+	#shake(duracao, frequencia, amplitude)
+	shake(0.2, 15, 8)"
+
+[sub_resource type="DynamicFontData" id=2]
+
+font_path = "res://Fonts/mago1.ttf"
+
+[sub_resource type="DynamicFont" id=3]
+
+size = 60
+use_mipmaps = false
+use_filter = false
+extra_spacing_char = 2
+font_data = SubResource( 2 )
+_sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
+
+[sub_resource type="DynamicFont" id=4]
+
+size = 75
+use_mipmaps = false
+use_filter = false
+extra_spacing_char = 2
+font_data = SubResource( 2 )
+_sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
+
+[sub_resource type="GDScript" id=5]
+
+resource_name = "ScoreNum.gd"
+script/source = "extends Label
+
+#Variaveis!
+var pontos_sendo_mostrados = 0
+
+func _ready():
+	set_process(true)
+	pass
+
+func _process(delta):
+	#Aqui e um codigo bem simples pra deixar mais legalzinha a progressao do numero, com ele
+	#aumentando de 1 em 1.
+	if pontos_sendo_mostrados < global.pontos:
+		pontos_sendo_mostrados += 1
+	
+	set_text(str(pontos_sendo_mostrados))
+	yield(get_tree().create_timer(0.02), 'timeout')
+	pass
+"
+_sections_unfolded = [ "Resource" ]
+
+[sub_resource type="DynamicFont" id=6]
+
+size = 75
+use_mipmaps = false
+use_filter = false
+extra_spacing_char = 2
+font_data = SubResource( 2 )
+_sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
+
+[sub_resource type="GDScript" id=7]
+
+resource_name = "NextUpgradeNum.gd"
+script/source = "extends Label
+
+#Variaveis!
+var pontos_sendo_mostrados = global.pontos_para_proximo_upgrade
+
+func _ready():
+	set_process(true)
+	pass
+
+func _process(delta):
+	#Aqui e um codigo bem simples pra deixar mais legalzinha a progressao do numero, com ele
+	#aumentando de 1 em 1.
+	if pontos_sendo_mostrados < global.pontos_para_proximo_upgrade:
+		pontos_sendo_mostrados += 1
+	
+	set_text(str(pontos_sendo_mostrados))
+	yield(get_tree().create_timer(0.02), 'timeout')
+	pass
+"
+_sections_unfolded = [ "Resource" ]
+
+[sub_resource type="StyleBoxFlat" id=8]
+
+content_margin_left = 0.0
+content_margin_right = 0.0
+content_margin_top = 0.0
+content_margin_bottom = 0.0
+bg_color = Color( 0.175781, 0.00137329, 0.00137329, 1 )
+draw_center = true
+border_width_left = 3
+border_width_top = 2
+border_width_right = 3
+border_width_bottom = 4
+border_color = Color( 1, 0.429688, 0.429688, 1 )
+border_blend = false
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 1
+expand_margin_left = 20.0
+expand_margin_right = 20.0
+expand_margin_top = 10.0
+expand_margin_bottom = 10.0
+shadow_color = Color( 0.0976563, 0.0976563, 0.0976563, 1 )
+shadow_size = 5
+anti_aliasing = false
+anti_aliasing_size = 1
+_sections_unfolded = [ "Anti Aliasing", "Content Margin", "Corner Radius", "Expand Margin", "Shadow" ]
+
+[sub_resource type="GDScript" id=9]
+
+script/source = "extends Node2D
+
+#Variaveis
+var indice_do_spawner_da_vez = 0
+onready var spawnerl = get_node('spawnerl')
+onready var spawnerr = get_node('spawnerr')
+
+func _ready():
+	set_process(true)
+	pass
+
+func _process(delta):
+#	if global.spawnando:
+		
+	# Called every frame. Delta is time since last frame.
+	# Update game logic here.
+	pass
+
+
+func _on_timer_para_tocar_o_barco_timeout():
+	randomize()
+	global.numero_de_waves_faltando -=1
+	if global.numero_de_waves_faltando >= 0:
+		if indice_do_spawner_da_vez == 0:
+			indice_do_spawner_da_vez = 1
+			spawnerl._spawn(rand_range(0,3))
+		elif indice_do_spawner_da_vez == 1:
+			indice_do_spawner_da_vez = 0
+			spawnerr._spawn(rand_range(0,3))
+	else:
+		if get_tree().get_nodes_in_group('enemy').size() == 0 and get_parent().jogo_comecou:
+			get_parent().the_wave_is_over_now_give_me_my_points()
+	pass # replace with function body
+"
+
+[sub_resource type="RectangleShape2D" id=10]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 450 )
+
+[sub_resource type="RectangleShape2D" id=11]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 500 )
+
+[node name="main_standard" type="Control" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_vertical_guides_": [  ]
+}
+
+[node name="Camera2D" type="Camera2D" parent="." index="0" groups=[
+"camera",
+]]
+
+position = Vector2( 400, 300 )
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 1, 1 )
+limit_left = -10000000
+limit_top = -10000000
+limit_right = 10000000
+limit_bottom = 10000000
+limit_smoothed = false
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = false
+smoothing_speed = 5.0
+offset_v = 0.0
+offset_h = 0.0
+drag_margin_left = 0.2
+drag_margin_top = 0.2
+drag_margin_right = 0.2
+drag_margin_bottom = 0.2
+editor_draw_screen = true
+editor_draw_limits = false
+editor_draw_drag_margin = false
+script = SubResource( 1 )
+
+[node name="GUI" type="Control" parent="." index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+_sections_unfolded = [ "Pause" ]
+
+[node name="TopVBox" type="VBoxContainer" parent="GUI" index="0"]
+
+pause_mode = 2
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+margin_right = -640.0
+margin_bottom = 64.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 0
+
+[node name="ScoreHBox" type="HBoxContainer" parent="GUI/TopVBox" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 160.0
+margin_bottom = 60.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 0
+_sections_unfolded = [ "Margin", "Size Flags" ]
+
+[node name="ScoreStr" type="Label" parent="GUI/TopVBox/ScoreHBox" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 6.0
+margin_right = 156.0
+margin_bottom = 54.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 3 )
+text = "SCORE: "
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="ScoreNum" type="Label" parent="GUI/TopVBox/ScoreHBox" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 160.0
+margin_right = 160.0
+margin_bottom = 60.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 4 )
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script = SubResource( 5 )
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="BotVBox" type="VBoxContainer" parent="GUI" index="1"]
+
+pause_mode = 2
+editor/display_folded = true
+anchor_left = 0.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -60.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 0
+
+[node name="NextUpgradeHBox" type="HBoxContainer" parent="GUI/BotVBox" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 800.0
+margin_bottom = 60.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 0
+
+[node name="NextUpgradeStr" type="Label" parent="GUI/BotVBox/NextUpgradeHBox" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 6.0
+margin_right = 327.0
+margin_bottom = 54.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 3 )
+text = "NEXT UPGRADE: "
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="NextUpgradeNum" type="Label" parent="GUI/BotVBox/NextUpgradeHBox" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 331.0
+margin_right = 331.0
+margin_bottom = 60.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 6 )
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script = SubResource( 7 )
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="PressStartToGetRekt" type="Label" parent="GUI" index="2"]
+
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -289.0
+margin_top = -24.0
+margin_right = 288.0
+margin_bottom = 24.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_styles/normal = SubResource( 8 )
+custom_fonts/font = ExtResource( 2 )
+text = "Press 'Enter' to GET REKT"
+align = 1
+valign = 1
+uppercase = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts", "custom_styles" ]
+
+[node name="NinePatchRect" type="NinePatchRect" parent="GUI" index="3"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 40.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+
+[node name="spawners" type="Node2D" parent="." index="2"]
+
+script = SubResource( 9 )
+
+[node name="spawnerl" type="Position2D" parent="spawners" index="0"]
+
+script = ExtResource( 3 )
+
+[node name="spawnerr" type="Position2D" parent="spawners" index="1"]
+
+position = Vector2( 800, 0 )
+script = ExtResource( 4 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="timer_para_tocar_o_barco" type="Timer" parent="spawners" index="2"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[node name="boundaries" type="Node2D" parent="." index="3"]
+
+editor/display_folded = true
+
+[node name="boundaryl" type="StaticBody2D" parent="boundaries" index="0" groups=[
+"boundary",
+"boundaryl",
+]]
+
+position = Vector2( -32, 300 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="boundaries/boundaryl" index="0"]
+
+shape = SubResource( 10 )
+
+[node name="boundaryr" type="StaticBody2D" parent="boundaries" index="1" groups=[
+"boundary",
+"boundaryr",
+]]
+
+position = Vector2( 832, 300 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="boundaries/boundaryr" index="0"]
+
+shape = SubResource( 10 )
+
+[node name="boundaryt" type="StaticBody2D" parent="boundaries" index="2" groups=[
+"killer_boundary",
+]]
+
+position = Vector2( 400, -100 )
+rotation = 1.5708
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="boundaries/boundaryt" index="0"]
+
+shape = SubResource( 11 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="boundaryb" type="StaticBody2D" parent="boundaries" index="3" groups=[
+"killer_boundary",
+]]
+
+position = Vector2( 400, 700 )
+rotation = 1.5708
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="boundaries/boundaryb" index="0"]
+
+shape = SubResource( 11 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="player" parent="." index="4" instance=ExtResource( 5 )]
+
+position = Vector2( 400, 400 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." index="5"]
+
+layer = -1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+scroll_offset = Vector2( 0, 0 )
+scroll_base_offset = Vector2( 0, 0 )
+scroll_base_scale = Vector2( 1, 1 )
+scroll_limit_begin = Vector2( 0, 0 )
+scroll_limit_end = Vector2( 0, 0 )
+scroll_ignore_camera_zoom = true
+_sections_unfolded = [ "Scroll" ]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" index="0"]
+
+position = Vector2( 400, 300 )
+motion_scale = Vector2( 1, 1 )
+motion_offset = Vector2( 0, 0 )
+motion_mirroring = Vector2( 0, 0 )
+_sections_unfolded = [ "Motion" ]
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer" index="0"]
+
+modulate = Color( 0.71875, 0.71875, 0.71875, 1 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 6 )
+_sections_unfolded = [ "Material", "Transform", "Visibility" ]
+
+[connection signal="timeout" from="spawners/timer_para_tocar_o_barco" to="spawners" method="_on_timer_para_tocar_o_barco_timeout"]
+
+

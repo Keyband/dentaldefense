@@ -1,0 +1,171 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scripts/shot_spread.gd" type="Script" id=1]
+[ext_resource path="res://Textures/pink.png" type="Texture" id=2]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends \"res://Scripts/_shot_class.gd\"
+
+# Variaveis da classe \"shot\" e seus valores default:
+#	dano = 1
+#	velocidade = 100
+#	direcao = Vector2(0, 1) (esse aqui deve ser setado dentro do script de jogador)
+
+func _ready():
+	### Setar propriedades ###
+	dano = 0.5
+	velocidade = 500
+	
+	### Setar processo físico ###
+	set_physics_process(true)
+
+
+func _process(delta):
+	### Rotacionar ###
+	set_rotation(direcao.angle() + PI/2)
+	
+	### Transladar ###
+	global_translate( direcao * velocidade * delta)
+"
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 8, 16 )
+
+[sub_resource type="GDScript" id=3]
+
+script/source = "extends \"res://Scripts/_shot_class.gd\"
+
+# Variaveis da classe \"shot\" e seus valores default:
+#	dano = 1
+#	velocidade = 100
+#	direcao = Vector2(0, 1) (esse aqui deve ser setado dentro do script de jogador)
+
+func _ready():
+	### Setar propriedades ###
+	dano = 1
+	velocidade = 600
+
+	### Setar processo físico ###
+	set_physics_process(true)
+
+
+func _process(delta):
+	### Rotacionar ###
+	set_rotation(direcao.angle() + PI/2)
+	
+	### Transladar ###
+	global_translate( direcao * velocidade * delta)
+"
+
+[sub_resource type="GDScript" id=4]
+
+script/source = "extends \"res://Scripts/_shot_class.gd\"
+
+# Variaveis da classe \"shot\" e seus valores default:
+#	dano = 1
+#	velocidade = 100
+#	direcao = Vector2(0, 1) (esse aqui deve ser setado dentro do script de jogador)
+
+func _ready():
+	### Setar propriedades ###
+	dano = 1
+	velocidade = 600
+	
+	### Setar processo físico ###
+	set_physics_process(true)
+
+
+func _process(delta):
+	### Rotacionar ###
+	set_rotation(direcao.angle() + PI/2)
+	
+	### Transladar ###
+	global_translate( direcao * velocidade * delta)
+"
+
+[node name="shot" type="Node2D" index="0"]
+
+script = ExtResource( 1 )
+
+[node name="shot1" type="Area2D" parent="." index="0"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="shot1" index="0"]
+
+scale = Vector2( 16, 32 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="shot1" index="1"]
+
+shape = SubResource( 2 )
+
+[node name="shot2" type="Area2D" parent="." index="1"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = SubResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="shot2" index="0"]
+
+scale = Vector2( 16, 32 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="shot2" index="1"]
+
+shape = SubResource( 2 )
+
+[node name="shot3" type="Area2D" parent="." index="2"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = SubResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="shot3" index="0"]
+
+scale = Vector2( 16, 32 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="shot3" index="1"]
+
+shape = SubResource( 2 )
+
+[node name="Timer" type="Timer" parent="." index="3"]
+
+process_mode = 1
+wait_time = 30.0
+one_shot = false
+autostart = true
+
+[connection signal="body_entered" from="shot1" to="shot1" method="_on_shot_body_entered"]
+
+[connection signal="body_entered" from="shot2" to="shot2" method="_on_shot_body_entered"]
+
+[connection signal="body_entered" from="shot3" to="shot3" method="_on_shot_body_entered"]
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+
