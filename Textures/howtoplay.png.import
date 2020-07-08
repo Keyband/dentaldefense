@@ -3,20 +3,21 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/howtoplay.png-6938a0d4d4f089cedc2c825c9411abd3.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://Textures/howtoplay.png"
-source_md5="94176f4389be3bea8677be0233956599"
-
 dest_files=[ "res://.import/howtoplay.png-6938a0d4d4f089cedc2c825c9411abd3.stex" ]
-dest_md5="58423a319855a7ad6f9abc5cf05fc7db"
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=false
@@ -26,6 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true

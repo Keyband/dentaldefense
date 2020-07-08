@@ -7,10 +7,7 @@ path="res://.import/teethcount.wav-c23ab1e8dbc7b2e2dd4bf0a49ff608ea.sample"
 [deps]
 
 source_file="res://SFX/teethcount.wav"
-source_md5="477c6513c2e4a68d4e0a89e8c19b885b"
-
 dest_files=[ "res://.import/teethcount.wav-c23ab1e8dbc7b2e2dd4bf0a49ff608ea.sample" ]
-dest_md5="92a794a108b25ed4d6a8ab9a86ebed6b"
 
 [params]
 

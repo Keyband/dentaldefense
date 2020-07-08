@@ -3,20 +3,21 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/pasta_tile.png-b33042aa934bcfaee004465430e4eeea.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://Textures/pasta_tile.png"
-source_md5="4333b48903333bc48d655182dc86a067"
-
 dest_files=[ "res://.import/pasta_tile.png-b33042aa934bcfaee004465430e4eeea.stex" ]
-dest_md5="2fc3a4d8628c96339e0f35b14ae29d10"
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=false
@@ -26,6 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true

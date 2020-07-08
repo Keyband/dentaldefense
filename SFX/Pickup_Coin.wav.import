@@ -7,10 +7,7 @@ path="res://.import/Pickup_Coin.wav-4791c6db2e27ab02fb76d663bd296e73.sample"
 [deps]
 
 source_file="res://SFX/Pickup_Coin.wav"
-source_md5="fe665a0c94e85796acdc4090c4bb0dfd"
-
 dest_files=[ "res://.import/Pickup_Coin.wav-4791c6db2e27ab02fb76d663bd296e73.sample" ]
-dest_md5="2cfd93e694e416ec8c1f14fbf7db264b"
 
 [params]
 

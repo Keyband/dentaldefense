@@ -3,20 +3,21 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/cookipack.png-47b14cb8287d2e41de3c13f682eedb45.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://Textures/cookipack.png"
-source_md5="585b6b5bc0ebe73b9b8f39ab812a8e72"
-
 dest_files=[ "res://.import/cookipack.png-47b14cb8287d2e41de3c13f682eedb45.stex" ]
-dest_md5="5c10c10fac5b8f5bd5f06f281aca9fc1"
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=false
@@ -26,6 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true

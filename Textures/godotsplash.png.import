@@ -3,20 +3,21 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/godotsplash.png-ef4b80afd91bff8978fb13ece2605cde.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://Textures/godotsplash.png"
-source_md5="8012600543abd20805a489d14455603f"
-
 dest_files=[ "res://.import/godotsplash.png-ef4b80afd91bff8978fb13ece2605cde.stex" ]
-dest_md5="85c9cd60cd8bbb59aa45f38d0994a225"
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
@@ -26,6 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true
