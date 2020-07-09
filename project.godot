@@ -77,6 +77,10 @@ ui_pause={
  ]
 }
 
+[node]
+
+name_casing=1
+
 [rendering]
 
 quality/driver/driver_name="GLES2"

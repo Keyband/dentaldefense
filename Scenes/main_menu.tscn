@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://SFX/start.wav" type="AudioStream" id=1]
 [ext_resource path="res://SFX/Pickup_Coin.wav" type="AudioStream" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Textures/cookipack.png" type="Texture" id=8]
 [ext_resource path="res://Scenes/bg_garganta.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Textures/black.png" type="Texture" id=10]
+[ext_resource path="res://Scenes/polishIGuess/fluffOscilation.gd" type="Script" id=11]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Control
@@ -87,6 +88,16 @@ func _on_AnimationPlayer_animation_finished( anim_name ):
 	pass # replace with function body
 "
 
+[sub_resource type="GDScript" id=18]
+script/source = "extends TextureRect
+const duration=0.3
+func _ready():
+	self.visible=true
+	$twnFade.interpolate_property(self,\"modulate:a\",self.modulate.a,0,duration,Tween.TRANS_QUINT,Tween.EASE_OUT)
+	$twnFade.start()
+	$twnFade.connect(\"tween_all_completed\",self,\"queue_free\")
+"
+
 [sub_resource type="Animation" id=2]
 resource_name = "fade_in"
 length = 2.0
@@ -103,36 +114,12 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("TextureRect:modulate")
+tracks/1/path = NodePath("Sprite:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("TextureRect:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Sprite:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
 "times": PoolRealArray( 0.5, 1.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
@@ -143,7 +130,7 @@ tracks/3/keys = {
 resource_name = "fade_out"
 length = 1.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/path = NodePath("blackSplash:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -169,7 +156,7 @@ tracks/1/keys = {
 } ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("TextureRect:visible")
+tracks/2/path = NodePath("blackSplash:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -322,130 +309,27 @@ func _process(delta):
 	pass
 "
 
-[sub_resource type="GDScript" id=13]
-script/source = "extends Sprite
-
-# class member variables go here, for example:
-# var a = 2
-var equilibro = Vector2()
-var angulo = 0
-var deslocamento = 0
-
-func _ready():
-	equilibro = self.global_position
-#	yield(get_tree().create_timer(1), 'timeout')
-	set_physics_process(true)
-	pass
-
-func _physics_process(delta):
-		
-	angulo += PI/8
-	self.global_position = equilibro + Vector2(0, 4*sin(angulo * delta * 15 + deslocamento))
-	# Called every frame. Delta is time since last frame.
-	# Update game logic here.
-	pass
-"
-
-[sub_resource type="GDScript" id=14]
-script/source = "extends Sprite
-
-# class member variables go here, for example:
-# var a = 2
-var equilibro = Vector2()
-var angulo = 0
-var deslocamento = PI/4
-
-func _ready():
-	equilibro = self.global_position
-#	yield(get_tree().create_timer(1), 'timeout')
-	set_physics_process(true)
-	pass
-
-func _physics_process(delta):
-		
-	angulo += PI/8
-	self.global_position = equilibro + Vector2(0, 4*sin(angulo * delta * 15 + deslocamento))
-	# Called every frame. Delta is time since last frame.
-	# Update game logic here.
-	pass
-"
-
-[sub_resource type="GDScript" id=15]
-script/source = "extends Sprite
-
-# class member variables go here, for example:
-# var a = 2
-var equilibro = Vector2()
-var angulo = 0
-var deslocamento = PI/2
-
-func _ready():
-	equilibro = self.global_position
-#	yield(get_tree().create_timer(1), 'timeout')
-	set_physics_process(true)
-	pass
-
-func _physics_process(delta):
-		
-	angulo += PI/8
-	self.global_position = equilibro + Vector2(0, 4*sin(angulo * delta * 15 + deslocamento))
-	# Called every frame. Delta is time since last frame.
-	# Update game logic here.
-	pass
-"
-
-[sub_resource type="GDScript" id=16]
-script/source = "extends Sprite
-
-# class member variables go here, for example:
-# var a = 2
-var equilibro = Vector2()
-var angulo = 0
-var deslocamento = PI
-
-func _ready():
-	equilibro = self.global_position
-#	yield(get_tree().create_timer(1), 'timeout')
-	set_physics_process(true)
-	pass
-
-func _physics_process(delta):
-		
-	angulo += PI/8
-	self.global_position = equilibro + Vector2(0, 4*sin(angulo * delta * 15 + deslocamento))
-	# Called every frame. Delta is time since last frame.
-	# Update game logic here.
-	pass
-"
-
-[sub_resource type="GDScript" id=17]
-script/source = "extends Sprite
-
-# class member variables go here, for example:
-# var a = 2
-var equilibro = Vector2()
-var angulo = 0
-var deslocamento = 3*PI/2
-
-func _ready():
-	equilibro = self.global_position
-#	yield(get_tree().create_timer(1), 'timeout')
-	set_physics_process(true)
-	pass
-
-func _physics_process(delta):
-		
-	angulo += PI/8
-	self.global_position = equilibro + Vector2(0, 4*sin(angulo * delta * 15 + deslocamento))
-	# Called every frame. Delta is time since last frame.
-	# Update game logic here.
-	pass
-"
-
 [node name="main_menu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="blackSplash" type="TextureRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 10 )
+expand = true
+stretch_mode = 2
+script = SubResource( 18 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="twnFade" type="Tween" parent="blackSplash"]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
@@ -468,6 +352,9 @@ texture = ExtResource( 3 )
 modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="HSeparator4" type="HSeparator" parent="HBoxContainer"]
 margin_right = 800.0
@@ -637,50 +524,46 @@ size_flags_vertical = 3
 [node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/fluff"]
 margin_bottom = 59.0
 
-[node name="Sprite" type="Sprite" parent="HBoxContainer/fluff/CenterContainer"]
+[node name="0" type="Sprite" parent="HBoxContainer/fluff/CenterContainer"]
 position = Vector2( 300, 0 )
 texture = ExtResource( 7 )
 hframes = 4
-script = SubResource( 13 )
+script = ExtResource( 11 )
 
-[node name="Sprite2" type="Sprite" parent="HBoxContainer/fluff/CenterContainer"]
+[node name="1" type="Sprite" parent="HBoxContainer/fluff/CenterContainer"]
 position = Vector2( 350, 0 )
 texture = ExtResource( 7 )
 hframes = 4
 frame = 1
-script = SubResource( 14 )
+script = ExtResource( 11 )
+deslocamento = 0.785
 
-[node name="Sprite3" type="Sprite" parent="HBoxContainer/fluff/CenterContainer"]
+[node name="2" type="Sprite" parent="HBoxContainer/fluff/CenterContainer"]
 position = Vector2( 400, 0 )
 texture = ExtResource( 7 )
 hframes = 4
 frame = 2
-script = SubResource( 15 )
+script = ExtResource( 11 )
+deslocamento = 1.571
 
-[node name="Sprite4" type="Sprite" parent="HBoxContainer/fluff/CenterContainer"]
+[node name="3" type="Sprite" parent="HBoxContainer/fluff/CenterContainer"]
 position = Vector2( 450, 0 )
 texture = ExtResource( 7 )
 hframes = 4
 frame = 3
-script = SubResource( 16 )
+script = ExtResource( 11 )
+deslocamento = 2.356
 
-[node name="Sprite5" type="Sprite" parent="HBoxContainer/fluff/CenterContainer"]
+[node name="4" type="Sprite" parent="HBoxContainer/fluff/CenterContainer"]
 position = Vector2( 500, 0 )
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 8 )
-script = SubResource( 17 )
+script = ExtResource( 11 )
 
 [node name="garganta" parent="." instance=ExtResource( 9 )]
 
 [node name="Sprite" parent="garganta/ParallaxLayer" index="0"]
 modulate = Color( 0.847656, 0.847656, 0.847656, 1 )
-
-[node name="TextureRect" type="TextureRect" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture = ExtResource( 10 )
-expand = true
-stretch_mode = 2
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="pressed" from="HBoxContainer/Opcoes/root_mode/Button" to="HBoxContainer/Opcoes/root_mode/Button" method="_on_Button_pressed"]
 [connection signal="pressed" from="HBoxContainer/Opcoes/nutella_mode/Button" to="HBoxContainer/Opcoes/nutella_mode/Button" method="_on_Button_pressed"]

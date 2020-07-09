@@ -20,6 +20,7 @@ resource_name = "LowPassFilter"
 resource_name = "Reverb"
 
 [resource]
+bus/0/volume_db = -26.6051
 bus/0/effect/0/effect = SubResource( 1 )
 bus/0/effect/0/enabled = true
 bus/0/effect/1/effect = SubResource( 2 )
@@ -64,7 +65,7 @@ bus/6/name = "Musica"
 bus/6/solo = false
 bus/6/mute = false
 bus/6/bypass_fx = false
-bus/6/volume_db = 0.0
+bus/6/volume_db = -1.12151
 bus/6/send = "Master"
 bus/7/name = "MusicaGameOver"
 bus/7/solo = false
