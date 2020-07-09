@@ -12,7 +12,6 @@
 [ext_resource path="res://Textures/black.png" type="Texture" id=10]
 
 [sub_resource type="GDScript" id=1]
-
 script/source = "extends Control
 
 #Variaveis
@@ -89,11 +88,8 @@ func _on_AnimationPlayer_animation_finished( anim_name ):
 "
 
 [sub_resource type="Animation" id=2]
-
 resource_name = "fade_in"
 length = 2.0
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("HBoxContainer:modulate")
 tracks/0/interp = 1
@@ -144,11 +140,8 @@ tracks/3/keys = {
 }
 
 [sub_resource type="Animation" id=3]
-
 resource_name = "fade_out"
 length = 1.5
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("TextureRect:modulate")
 tracks/0/interp = 1
@@ -189,26 +182,13 @@ tracks/2/keys = {
 }
 
 [sub_resource type="StyleBoxLine" id=4]
-
-content_margin_left = -1.0
-content_margin_right = -1.0
-content_margin_top = -1.0
-content_margin_bottom = -1.0
 color = Color( 0, 0, 0, 0 )
-grow = 1.0
-thickness = 1
-vertical = false
 
 [sub_resource type="DynamicFont" id=5]
-
 size = 20
-use_mipmaps = false
-use_filter = false
 font_data = ExtResource( 5 )
-_sections_unfolded = [ "Font", "Settings" ]
 
 [sub_resource type="GDScript" id=6]
-
 script/source = "extends Button
 
 # class member variables go here, for example:
@@ -232,18 +212,9 @@ func _on_Button_pressed():
 "
 
 [sub_resource type="StyleBoxLine" id=7]
-
-content_margin_left = -1.0
-content_margin_right = -1.0
-content_margin_top = -1.0
-content_margin_bottom = -1.0
 color = Color( 0, 0, 0, 0 )
-grow = 1.0
-thickness = 1
-vertical = false
 
 [sub_resource type="GDScript" id=8]
-
 script/source = "extends Button
 
 # class member variables go here, for example:
@@ -267,7 +238,6 @@ func _on_Button_pressed():
 "
 
 [sub_resource type="GDScript" id=9]
-
 script/source = "extends Button
 
 # class member variables go here, for example:
@@ -291,7 +261,6 @@ func _on_Button_pressed():
 "
 
 [sub_resource type="GDScript" id=10]
-
 script/source = "extends Button
 
 # class member variables go here, for example:
@@ -315,15 +284,10 @@ func _on_Button_pressed():
 "
 
 [sub_resource type="DynamicFont" id=11]
-
 size = 30
-use_mipmaps = false
-use_filter = false
 font_data = ExtResource( 6 )
-_sections_unfolded = [ "Font", "Settings" ]
 
 [sub_resource type="GDScript" id=12]
-
 script/source = "extends Label
 
 var modo = 'vermelho'
@@ -359,7 +323,6 @@ func _process(delta):
 "
 
 [sub_resource type="GDScript" id=13]
-
 script/source = "extends Sprite
 
 # class member variables go here, for example:
@@ -384,7 +347,6 @@ func _physics_process(delta):
 "
 
 [sub_resource type="GDScript" id=14]
-
 script/source = "extends Sprite
 
 # class member variables go here, for example:
@@ -409,7 +371,6 @@ func _physics_process(delta):
 "
 
 [sub_resource type="GDScript" id=15]
-
 script/source = "extends Sprite
 
 # class member variables go here, for example:
@@ -434,7 +395,6 @@ func _physics_process(delta):
 "
 
 [sub_resource type="GDScript" id=16]
-
 script/source = "extends Sprite
 
 # class member variables go here, for example:
@@ -459,7 +419,6 @@ func _physics_process(delta):
 "
 
 [sub_resource type="GDScript" id=17]
-
 script/source = "extends Sprite
 
 # class member variables go here, for example:
@@ -484,469 +443,175 @@ func _physics_process(delta):
 "
 
 [node name="main_menu" type="Control"]
-
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 script = SubResource( 1 )
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="0"]
-
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
-volume_db = 0.0
-autoplay = false
-mix_target = 0
-bus = "Master"
 
-[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="." index="1"]
-
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
-volume_db = 0.0
-autoplay = false
-mix_target = 0
-bus = "Master"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
-
-root_node = NodePath("..")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "fade_in"
-playback_process_mode = 1
-playback_default_blend_time = 0.0
-playback_speed = 1.0
 anims/fade_in = SubResource( 2 )
 anims/fade_out = SubResource( 3 )
-blend_times = [  ]
 
-[node name="Sprite" type="Sprite" parent="." index="3"]
-
+[node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0 )
 position = Vector2( -114, -48 )
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 3 )
-_sections_unfolded = [ "Offset", "Region", "Transform", "Visibility", "Z Index" ]
 
-[node name="HBoxContainer" type="VBoxContainer" parent="." index="4"]
-
-editor/display_folded = true
+[node name="HBoxContainer" type="VBoxContainer" parent="."]
 modulate = Color( 1, 1, 1, 0 )
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-alignment = 0
-_sections_unfolded = [ "Visibility" ]
 
-[node name="HSeparator4" type="HSeparator" parent="HBoxContainer" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="HSeparator4" type="HSeparator" parent="HBoxContainer"]
 margin_right = 800.0
 margin_bottom = 30.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 custom_styles/separator = SubResource( 4 )
 custom_constants/separation = 30
-_sections_unfolded = [ "custom_constants", "custom_styles" ]
 
-[node name="HSeparator5" type="HSeparator" parent="HBoxContainer" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="HSeparator5" type="HSeparator" parent="HBoxContainer"]
 margin_top = 34.0
 margin_right = 800.0
 margin_bottom = 64.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 custom_styles/separator = SubResource( 4 )
 custom_constants/separation = 30
-_sections_unfolded = [ "custom_constants", "custom_styles" ]
 
-[node name="Logo" type="CenterContainer" parent="HBoxContainer" index="2"]
-
-editor/display_folded = true
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="Logo" type="CenterContainer" parent="HBoxContainer"]
 margin_top = 68.0
 margin_right = 800.0
 margin_bottom = 264.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-use_top_left = false
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Logo" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Logo"]
 margin_left = 174.0
 margin_right = 626.0
 margin_bottom = 196.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 texture = ExtResource( 4 )
-stretch_mode = 0
-_sections_unfolded = [ "Rect" ]
 
-[node name="HSeparator6" type="HSeparator" parent="HBoxContainer" index="3"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="HSeparator6" type="HSeparator" parent="HBoxContainer"]
 margin_top = 268.0
 margin_right = 800.0
 margin_bottom = 318.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 custom_styles/separator = SubResource( 4 )
 custom_constants/separation = 50
-_sections_unfolded = [ "custom_constants", "custom_styles" ]
 
-[node name="Opcoes" type="VBoxContainer" parent="HBoxContainer" index="4"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="Opcoes" type="VBoxContainer" parent="HBoxContainer"]
 margin_top = 322.0
 margin_right = 800.0
 margin_bottom = 425.0
-rect_pivot_offset = Vector2( 0, 0 )
 mouse_filter = 0
-mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
-size_flags_vertical = 1
 alignment = 1
-_sections_unfolded = [ "Grow Direction", "Size Flags" ]
 
-[node name="root_mode" type="CenterContainer" parent="HBoxContainer/Opcoes" index="0"]
-
-editor/display_folded = true
+[node name="root_mode" type="CenterContainer" parent="HBoxContainer/Opcoes"]
 visible = false
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_right = 800.0
 margin_bottom = 23.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
 size_flags_vertical = 5
-use_top_left = false
-_sections_unfolded = [ "Grow Direction", "Margin", "Rect", "Size Flags" ]
 
-[node name="Button" type="Button" parent="HBoxContainer/Opcoes/root_mode" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="Button" type="Button" parent="HBoxContainer/Opcoes/root_mode"]
 margin_left = 355.0
 margin_right = 445.0
 margin_bottom = 23.0
-rect_pivot_offset = Vector2( 0, 0 )
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 custom_fonts/font = SubResource( 5 )
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 text = "ROOT MODE"
-flat = false
-align = 1
 script = SubResource( 6 )
-_sections_unfolded = [ "custom_fonts" ]
 
-[node name="Position2D" type="Position2D" parent="HBoxContainer/Opcoes/root_mode" index="1"]
-
+[node name="Position2D" type="Position2D" parent="HBoxContainer/Opcoes/root_mode"]
 position = Vector2( 300, 12 )
-_sections_unfolded = [ "Transform" ]
 
-[node name="HSeparator" type="HSeparator" parent="HBoxContainer/Opcoes" index="1"]
-
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/Opcoes"]
 visible = false
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_right = 800.0
 margin_bottom = 9.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 custom_styles/separator = SubResource( 7 )
 custom_constants/separation = 9
-_sections_unfolded = [ "custom_constants", "custom_styles" ]
 
-[node name="nutella_mode" type="CenterContainer" parent="HBoxContainer/Opcoes" index="2"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="nutella_mode" type="CenterContainer" parent="HBoxContainer/Opcoes"]
 margin_right = 800.0
 margin_bottom = 23.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
 size_flags_vertical = 5
-use_top_left = false
-_sections_unfolded = [ "Size Flags" ]
 
-[node name="Button" type="Button" parent="HBoxContainer/Opcoes/nutella_mode" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="Button" type="Button" parent="HBoxContainer/Opcoes/nutella_mode"]
 margin_left = 375.0
 margin_right = 425.0
 margin_bottom = 23.0
-rect_pivot_offset = Vector2( 0, 0 )
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 custom_fonts/font = SubResource( 5 )
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 text = "PLAY!"
-flat = false
-align = 1
 script = SubResource( 8 )
-_sections_unfolded = [ "custom_fonts" ]
 
-[node name="Position2D" type="Position2D" parent="HBoxContainer/Opcoes/nutella_mode" index="1"]
-
+[node name="Position2D" type="Position2D" parent="HBoxContainer/Opcoes/nutella_mode"]
 position = Vector2( 300, 14 )
-_sections_unfolded = [ "Transform" ]
 
-[node name="HSeparator2" type="HSeparator" parent="HBoxContainer/Opcoes" index="3"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="HSeparator2" type="HSeparator" parent="HBoxContainer/Opcoes"]
 margin_top = 27.0
 margin_right = 800.0
 margin_bottom = 36.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 custom_styles/separator = SubResource( 7 )
 custom_constants/separation = 9
-_sections_unfolded = [ "custom_constants", "custom_styles" ]
 
-[node name="options" type="CenterContainer" parent="HBoxContainer/Opcoes" index="4"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="options" type="CenterContainer" parent="HBoxContainer/Opcoes"]
 margin_top = 40.0
 margin_right = 800.0
 margin_bottom = 63.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
 size_flags_vertical = 5
-use_top_left = false
-_sections_unfolded = [ "Size Flags" ]
 
-[node name="Button2" type="Button" parent="HBoxContainer/Opcoes/options" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="Button2" type="Button" parent="HBoxContainer/Opcoes/options"]
 margin_left = 341.0
 margin_right = 458.0
 margin_bottom = 23.0
-rect_pivot_offset = Vector2( 0, 0 )
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 custom_fonts/font = SubResource( 5 )
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 text = "HOW TO PLAY?!"
-flat = false
-align = 1
 script = SubResource( 9 )
-_sections_unfolded = [ "custom_fonts" ]
 
-[node name="Position2D" type="Position2D" parent="HBoxContainer/Opcoes/options" index="1"]
-
+[node name="Position2D" type="Position2D" parent="HBoxContainer/Opcoes/options"]
 position = Vector2( 300, 16 )
-_sections_unfolded = [ "Transform" ]
 
-[node name="HSeparator3" type="HSeparator" parent="HBoxContainer/Opcoes" index="5"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="HSeparator3" type="HSeparator" parent="HBoxContainer/Opcoes"]
 margin_top = 67.0
 margin_right = 800.0
 margin_bottom = 76.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 custom_styles/separator = SubResource( 7 )
 custom_constants/separation = 9
-_sections_unfolded = [ "custom_constants", "custom_styles" ]
 
-[node name="quit" type="CenterContainer" parent="HBoxContainer/Opcoes" index="6"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="quit" type="CenterContainer" parent="HBoxContainer/Opcoes"]
 margin_top = 80.0
 margin_right = 800.0
 margin_bottom = 103.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
 size_flags_vertical = 5
-use_top_left = false
-_sections_unfolded = [ "Size Flags" ]
 
-[node name="Button2" type="Button" parent="HBoxContainer/Opcoes/quit" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="Button2" type="Button" parent="HBoxContainer/Opcoes/quit"]
 margin_left = 375.0
 margin_right = 424.0
 margin_bottom = 23.0
-rect_pivot_offset = Vector2( 0, 0 )
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 custom_fonts/font = SubResource( 5 )
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 text = "QUIT!"
-flat = false
-align = 1
 script = SubResource( 10 )
-_sections_unfolded = [ "custom_fonts" ]
 
-[node name="Position2D" type="Position2D" parent="HBoxContainer/Opcoes/quit" index="1"]
-
+[node name="Position2D" type="Position2D" parent="HBoxContainer/Opcoes/quit"]
 position = Vector2( 300, 12 )
-_sections_unfolded = [ "Transform" ]
 
-[node name="HSeparator7" type="HSeparator" parent="HBoxContainer" index="5"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="HSeparator7" type="HSeparator" parent="HBoxContainer"]
 margin_top = 429.0
 margin_right = 800.0
 margin_bottom = 469.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 custom_styles/separator = SubResource( 4 )
 custom_constants/separation = 40
-_sections_unfolded = [ "custom_constants", "custom_styles" ]
 
-[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer" index="6"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer"]
 margin_top = 473.0
 margin_right = 800.0
 margin_bottom = 523.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-use_top_left = false
-_sections_unfolded = [ "Size Flags", "custom_styles" ]
 
-[node name="Label" type="Label" parent="HBoxContainer/CenterContainer" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="Label" type="Label" parent="HBoxContainer/CenterContainer"]
 margin_left = 339.0
 margin_right = 460.0
 margin_bottom = 50.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 custom_fonts/font = SubResource( 11 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/line_spacing = 2
@@ -954,136 +619,72 @@ custom_constants/shadow_as_outline = 10
 text = "PLACEHOLDER
 "
 align = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 script = SubResource( 12 )
-_sections_unfolded = [ "Rect", "custom_colors", "custom_constants", "custom_fonts" ]
 
-[node name="HSeparator8" type="HSeparator" parent="HBoxContainer" index="7"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="HSeparator8" type="HSeparator" parent="HBoxContainer"]
 margin_top = 527.0
 margin_right = 800.0
 margin_bottom = 537.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 custom_styles/separator = SubResource( 4 )
 custom_constants/separation = 10
-_sections_unfolded = [ "custom_constants", "custom_styles" ]
 
-[node name="fluff" type="HBoxContainer" parent="HBoxContainer" index="8"]
-
-editor/display_folded = true
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="fluff" type="HBoxContainer" parent="HBoxContainer"]
 margin_top = 541.0
 margin_right = 800.0
 margin_bottom = 600.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
 size_flags_vertical = 3
-alignment = 0
-_sections_unfolded = [ "Size Flags" ]
 
-[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/fluff" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/fluff"]
 margin_bottom = 59.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-use_top_left = false
 
-[node name="Sprite" type="Sprite" parent="HBoxContainer/fluff/CenterContainer" index="0"]
-
+[node name="Sprite" type="Sprite" parent="HBoxContainer/fluff/CenterContainer"]
 position = Vector2( 300, 0 )
 texture = ExtResource( 7 )
 hframes = 4
 script = SubResource( 13 )
-_sections_unfolded = [ "Animation", "Transform" ]
 
-[node name="Sprite2" type="Sprite" parent="HBoxContainer/fluff/CenterContainer" index="1"]
-
+[node name="Sprite2" type="Sprite" parent="HBoxContainer/fluff/CenterContainer"]
 position = Vector2( 350, 0 )
 texture = ExtResource( 7 )
 hframes = 4
 frame = 1
 script = SubResource( 14 )
-_sections_unfolded = [ "Animation", "Transform" ]
 
-[node name="Sprite3" type="Sprite" parent="HBoxContainer/fluff/CenterContainer" index="2"]
-
+[node name="Sprite3" type="Sprite" parent="HBoxContainer/fluff/CenterContainer"]
 position = Vector2( 400, 0 )
 texture = ExtResource( 7 )
 hframes = 4
 frame = 2
 script = SubResource( 15 )
-_sections_unfolded = [ "Animation", "Transform" ]
 
-[node name="Sprite4" type="Sprite" parent="HBoxContainer/fluff/CenterContainer" index="3"]
-
+[node name="Sprite4" type="Sprite" parent="HBoxContainer/fluff/CenterContainer"]
 position = Vector2( 450, 0 )
 texture = ExtResource( 7 )
 hframes = 4
 frame = 3
 script = SubResource( 16 )
-_sections_unfolded = [ "Animation", "Transform", "Z Index" ]
 
-[node name="Sprite5" type="Sprite" parent="HBoxContainer/fluff/CenterContainer" index="4"]
-
+[node name="Sprite5" type="Sprite" parent="HBoxContainer/fluff/CenterContainer"]
 position = Vector2( 500, 0 )
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 8 )
 script = SubResource( 17 )
-_sections_unfolded = [ "Animation", "Transform", "Z Index" ]
 
-[node name="garganta" parent="." index="5" instance=ExtResource( 9 )]
+[node name="garganta" parent="." instance=ExtResource( 9 )]
 
 [node name="Sprite" parent="garganta/ParallaxLayer" index="0"]
-
 modulate = Color( 0.847656, 0.847656, 0.847656, 1 )
 
-[node name="TextureRect" type="TextureRect" parent="." index="6"]
-
-anchor_left = 0.0
-anchor_top = 0.0
+[node name="TextureRect" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 texture = ExtResource( 10 )
 expand = true
 stretch_mode = 2
-_sections_unfolded = [ "Visibility" ]
-
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
-
 [connection signal="pressed" from="HBoxContainer/Opcoes/root_mode/Button" to="HBoxContainer/Opcoes/root_mode/Button" method="_on_Button_pressed"]
-
 [connection signal="pressed" from="HBoxContainer/Opcoes/nutella_mode/Button" to="HBoxContainer/Opcoes/nutella_mode/Button" method="_on_Button_pressed"]
-
 [connection signal="pressed" from="HBoxContainer/Opcoes/options/Button2" to="HBoxContainer/Opcoes/options/Button2" method="_on_Button_pressed"]
-
 [connection signal="pressed" from="HBoxContainer/Opcoes/quit/Button2" to="HBoxContainer/Opcoes/quit/Button2" method="_on_Button_pressed"]
-
 
 [editable path="garganta"]

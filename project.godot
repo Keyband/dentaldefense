@@ -16,8 +16,8 @@ _global_script_class_icons={
 [application]
 
 config/name="Plaque Attack Remake"
-run/main_scene="res://Scenes/splash1.tscn"
-boot_splash/image="res://Textures/godotsplash.png"
+run/main_scene="res://Scenes/main_menu.tscn"
+boot_splash/image="res://Textures/EscadaSplash.png"
 config/icon="res://Textures/dente_icon.png"
 
 [autoload]
